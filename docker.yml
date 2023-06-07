@@ -1,0 +1,13 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+
+  - name: install docker and docker-compose
+    dnf:
+      name:
+        - docker
+        - docker-compose
+      state: latest
+
