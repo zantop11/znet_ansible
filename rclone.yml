@@ -1,0 +1,13 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+
+  - name: Install Rclone
+    dnf:
+      name: 
+        - rclone
+      state: latest
+      
+
