@@ -6,13 +6,13 @@
 
   - name: Download rclone rpm
     get_url:
-      url: https://downloads.rclone.org/v1.62.2/rclone-v1.62.2-linux-amd64.rpm 
+      url: https://downloads.rclone.org/rclone-current-linux-amd64.rpm
       dest: /home/zantop/files
   
   - name: Install downloaded Rclone rpm
     dnf:
-      name: /home/zantop/files/rclone-v1.62.2-linux-amd64.rpm
+      name: /home/zantop/files/rclone-current-linux-amd64.rpm
       state: present
-      
+      disable_gpg_check: true
       
 
