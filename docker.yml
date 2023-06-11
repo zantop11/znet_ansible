@@ -13,8 +13,16 @@
   - name: add docker repository
     lineinfile:
       state: present
-      insertafter: EOF
       path: /etc/dnf/dnf.conf
-      marker: "<! -- Ansible Managed Block -- >"
-      content: |
-        https://download.docker.com/linux/fedora/docker-ce.repo        
+      insertafter: EOF
+      line: https://download.docker.com/linux/fedora/docker-ce.repo  
+      
+  - name: install docker files and docker-compose
+    dnf:
+      name: 
+        - docker-ce
+        - docker-ce-cli
+        - containerd.io
+        - docker-buildx-plugin
+        - docker-compose
+      state: latest        
