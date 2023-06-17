@@ -10,13 +10,10 @@
         - dnf-plugins-core
       state: latest
 
-  - name: add docker repository
-    lineinfile:
-      state: present
-      path: /etc/dnf/dnf.conf
-      insertafter: EOF
-      line: https://download.docker.com/linux/fedora/docker-ce.repo  
+  - name: install docker repo
+    enablerepo: https://download.docker.com/linux/fedora/docker-ce.repo  
       
+      line: 
   - name: install docker files and docker-compose
     dnf:
       name: 
