@@ -30,7 +30,7 @@
               - /var/run/docker.sock:/var/run/docker.sock
             restart: unless-stopped
         volumes:
-        data:
+          data:
 
   - name: set docker as service and start
     ansible.builtin.service:
