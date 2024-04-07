@@ -6,7 +6,7 @@
   - name: install docker and docker compose
     apt:
       name: 
-        - docker.io
+        - docker
         - docker-compose
       state: latest
 
@@ -28,7 +28,7 @@
         data:
 
   - name: set docker compose as service and start docker and docker compose
-    ansible.bultin.service:
+    ansible.builtin.service:
       name:
         - docker
         - docker-compose
