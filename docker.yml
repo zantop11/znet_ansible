@@ -43,11 +43,6 @@
       username: zantop88
       password: Godgames8$      
 
-  - name: set docker compose as service and start
-    ansible.builtin.service:
-      name: docker-compose
-      enabled: yes
-      state: started
 
   - name: Start Portainer
     docker_compose:
