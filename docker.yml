@@ -36,17 +36,18 @@
     ansible.builtin.service:
       name: docker
       enabled: yes
-      state: started
+      state: started      
+
+  - name: DockerHub Login
+    docker_login:
+      username: zantop88
+      password: Godgames8$      
+
   - name: set docker compose as service and start
     ansible.builtin.service:
       name: docker-compose
       enabled: yes
       state: started
-
-  - name: DockerHub Login
-    docker_login:
-      username: zantop88
-      password: Godgames8$
 
   - name: Start Portainer
     docker_compose:
