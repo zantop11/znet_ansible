@@ -9,6 +9,7 @@
         - docker
         - docker-compose
       state: latest
+      update_cache: true
   - name: create docker directory 
     ansible.builtin.file:
       path: "/home/zantop/docker"
