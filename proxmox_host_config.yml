@@ -1,9 +1,11 @@
 ---
 
-#make sure this playbook is run after the host and storage drives have been set up and mounted
+#IMPORTANT: Make sure this playbook is run after the host and storage drives have been set up and mounted
 
+#Change url to correct version for your host OS
 - name: Install mergerfs
-  
+  ansible.builtin.apt:
+    deb: https://github.com/trapexit/mergerfs/releases/download/2.40.2/mergerfs_2.40.2.debian-bookworm_amd64.deb
 #adjust the "/mnt/drive*" with your drive names, change "/mnt/pool" to the name you choose for your drive pool
 - name: Append /etc/fstab
   ansible.builtin.lineinfile:
