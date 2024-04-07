@@ -9,6 +9,10 @@
         - docker
         - docker-compose
       state: latest
+  - name: create docker directory 
+    ansible.builtin.file:
+      path: "/home/zantop/docker"
+      state: directory
 
   - name: add portainer compose file
     copy: 
