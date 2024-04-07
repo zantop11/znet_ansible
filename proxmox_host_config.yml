@@ -1,0 +1,16 @@
+---
+
+#make sure this playbook is run after the host and drives have been set up
+
+- name: add storage drive mount info to host file
+  ansible.builtin.blockinfile:
+    path: /root/host.conf
+    append_newline: true
+    block: |
+      lxc.mount.entry: /dev/fuse dev/fuse non bind,create=file 0 0
+      lxc.cap.drop: 
+      lxc.cap.drop: mac_override sys_time sys_module sys_rawio
+      lxc.cgroup2.devices.allow: c 10:200 rwm
+      lxc.cgroup2.devices.allow: c 189:* rwm
+      lxc.mount.entry: /dev/net/tun dev/net/tun none bind,create=file
+      
