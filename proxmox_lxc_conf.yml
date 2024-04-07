@@ -1,0 +1,9 @@
+---
+#IMPORTANT: This playbook cannot be run until the LXC is created and run once
+#adds to the /etc/pve/lxc/*.conf file to include proper mount points on the pve host 
+
+#change the path and mnt location to match the your setup
+- name: add mountpoint to lxc config 
+  ansible.builtin.lineinfile:
+    path: /etc/pve/lxc/100.conf
+    line: "mp0: /mnt/pool,mp=/mnt/pool"
