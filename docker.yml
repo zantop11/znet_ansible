@@ -3,23 +3,44 @@
 - hosts: all
   become: true
   tasks:
-
-  - name: install docker plugins
-    dnf:
-      name:
-        - dnf-plugins-core
+  - name: install docker and docker compose
+    apt:
+      name: 
+        - docker.io
+        - docker-compose
       state: latest
 
-  - name: install docker repo
-    enablerepo: https://download.docker.com/linux/fedora/docker-ce.repo  
-      
-      line: 
-  - name: install docker files and docker-compose
-    dnf:
-      name: 
-        - docker-ce
-        - docker-ce-cli
-        - containerd.io
-        - docker-buildx-plugin
+  - name: add portainer compose file
+    copy: 
+      dest: "/home/zantop/docker/docker-compose.yml"
+      content: |
+        version: "3"
+        services:
+          portainer:
+            image: portainer/portainer-ce:latest
+            ports:
+              - 9443:9443
+            volumes:
+              - /home/zantop/docker/portainer:/data
+              - /var/run/docker.sock:/var/run/docker.sock
+            restart: unless-stopped
+        volumes:
+        data:
+
+  - name: set docker compose as service and start docker and docker compose
+    ansible.bultin.service:
+      name:
+        - docker
         - docker-compose
-      state: latest        
+      enabled: yes
+      state: started
+
+  - name: DockerHub Login
+    docker_login:
+      username: zantop88
+      password: Godgames8$
+
+  - name: Start Portainer
+    docker-compose:
+      project_src: "/home/zantop/docker/docker-compose.yml"
+    register: output
