@@ -32,11 +32,14 @@
         volumes:
         data:
 
-  - name: set docker compose as service and start docker and docker compose
+  - name: set docker as service and start
     ansible.builtin.service:
-      name:
-        - docker
-        - docker-compose
+      name: docker
+      enabled: yes
+      state: started
+  - name: set docker compose as service and start
+    ansible.builtin.service:
+      name: docker-compose
       enabled: yes
       state: started
 
