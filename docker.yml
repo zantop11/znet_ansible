@@ -41,6 +41,6 @@
       password: Godgames8$
 
   - name: Start Portainer
-    docker-compose:
+    docker_compose:
       project_src: "/home/zantop/docker/docker-compose.yml"
     register: output
