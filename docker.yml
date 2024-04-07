@@ -46,5 +46,5 @@
 
   - name: Start Portainer
     docker_compose:
-      project_src: "/home/zantop/docker/docker-compose.yml"
+      project_src: "/home/zantop/docker/"
     register: output
