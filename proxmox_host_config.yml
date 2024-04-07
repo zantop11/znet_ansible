@@ -1,6 +1,15 @@
 ---
 
-#make sure this playbook is run after the host and drives have been set up
+#make sure this playbook is run after the host and storage drives have been set up and mounted
+
+- name: Install mergerfs
+  
+#adjust the "/mnt/drive*" with your drive names, change "/mnt/pool" to the name you choose for your drive pool
+- name: Append /etc/fstab
+  ansible.builtin.lineinfile:
+    path: /etc/fstab
+    line: /mnt/drive* /mnt/pool fuse.mergerfs defaults,nonempty,allow_other,use_ino,cache.files=off,moveonenospc=true,category.create=mfs,dropcacheonclose=true,minfreespace=250G,fsname=mergerfs 0 0
+
 
 - name: add storage drive mount info to host file
   ansible.builtin.blockinfile:
