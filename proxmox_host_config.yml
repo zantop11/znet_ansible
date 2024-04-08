@@ -3,25 +3,28 @@
 #IMPORTANT: Make sure this playbook is run after the host and storage drives have been set up and mounted
 
 #Change url to correct version for your host OS
-- name: Install mergerfs
-  ansible.builtin.apt:
-    deb: https://github.com/trapexit/mergerfs/releases/download/2.40.2/mergerfs_2.40.2.debian-bookworm_amd64.deb
+- hosts: all
+  become: true
+  tasks: 
+  - name: Install mergerfs
+    ansible.builtin.apt:
+      deb: https://github.com/trapexit/mergerfs/releases/download/2.40.2/mergerfs_2.40.2.debian-bookworm_amd64.deb
 #adjust the "/mnt/drive*" with your drive names, change "/mnt/pool" to the name you choose for your drive pool
-- name: Append /etc/fstab
-  ansible.builtin.lineinfile:
-    path: /etc/fstab
-    line: /mnt/drive* /mnt/pool fuse.mergerfs defaults,nonempty,allow_other,use_ino,cache.files=off,moveonenospc=true,category.create=mfs,dropcacheonclose=true,minfreespace=250G,fsname=mergerfs 0 0
+  - name: Append /etc/fstab
+    ansible.builtin.lineinfile:
+      path: /etc/fstab
+      line: /mnt/drive* /mnt/pool fuse.mergerfs defaults,nonempty,allow_other,use_ino,cache.files=off,moveonenospc=true,category.create=mfs,dropcacheonclose=true,minfreespace=250G,fsname=mergerfs 0 0
 
 
-- name: add storage drive mount info to host file
-  ansible.builtin.blockinfile:
-    path: /root/host.conf
-    append_newline: true
-    block: |
-      lxc.mount.entry: /dev/fuse dev/fuse non bind,create=file 0 0
-      lxc.cap.drop: 
-      lxc.cap.drop: mac_override sys_time sys_module sys_rawio
-      lxc.cgroup2.devices.allow: c 10:200 rwm
-      lxc.cgroup2.devices.allow: c 189:* rwm
-      lxc.mount.entry: /dev/net/tun dev/net/tun none bind,create=file
+  - name: add storage drive mount info to host file
+    ansible.builtin.blockinfile:
+      path: /root/host.conf
+      append_newline: true
+      block: |
+        lxc.mount.entry: /dev/fuse dev/fuse non bind,create=file 0 0
+        lxc.cap.drop: 
+        lxc.cap.drop: mac_override sys_time sys_module sys_rawio
+        lxc.cgroup2.devices.allow: c 10:200 rwm
+        lxc.cgroup2.devices.allow: c 189:* rwm
+        lxc.mount.entry: /dev/net/tun dev/net/tun none bind,create=file
       

@@ -1,0 +1,9 @@
+---
+
+- name: Download GPG Key
+  ansible.builtin.uri: 
+    url: https://pkgs.tailscale.com/stable/ubuntu/focal.noarmor.gpg
+- name: Install key
+  ansible.builtin.lineinfile:
+    
+  
