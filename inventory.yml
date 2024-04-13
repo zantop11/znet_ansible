@@ -1,0 +1,15 @@
+---
+lindoe:
+  hosts:
+    remote:
+   zantopserv: zantop@172.232.11.253
+
+pve:
+  hosts:    
+    lxc:
+      bare: root@192.168.1.122
+      mediaservers: zantop@192.168.1.123
+      downloaders: zantop@192.168.1.124
+      nextcloud: zantop@192.168.1.126
+      ha: zantop@192.168.1.127
+    
