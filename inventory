@@ -1,6 +1,8 @@
 
 [remote01] 
 zserv ansible_host=172.232.11.253
+
+[lxc]
 mediaplayers ansible_host=192.168.1.123
 downloaders ansible_host=192.168.1.124
 nextcloud ansible_host=192.168.1.126
@@ -16,3 +18,5 @@ ansible_user=zantop
 [pve:vars]
 ansible_user=root
 
+[lxc:vars]
+ansible_user=zantop
