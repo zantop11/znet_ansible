@@ -40,8 +40,8 @@
 
   - name: DockerHub Login
     docker_login:
-      username: zantop88
-      password: Godgames8$      
+      username: 
+      password:   
 
 
   - name: Start Portainer
