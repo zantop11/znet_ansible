@@ -2,7 +2,7 @@
 lindoe:
   hosts:
     remote:
-   zantopserv: zantop@172.232.11.253
+      zantopserv: zantop@172.232.11.253
 
 pve:
   hosts:    
