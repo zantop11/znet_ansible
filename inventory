@@ -1,1 +1,24 @@
-zantop@172.232.11.253
+zantserv:
+  hosts:
+    zantop@172.232.11.253
+
+pve:
+  hosts:
+    root@192.168.1.122
+
+mediaplayers:
+  hosts:
+    zantop@192.168.1.123
+
+downloaders:
+  hosts:
+    zantop@192.168.1.124
+
+nextcloud:
+  hosts:
+    zantop@192.168.1.126
+
+ha:
+  hosts:
+    zantop@192.168.1.127
+    
