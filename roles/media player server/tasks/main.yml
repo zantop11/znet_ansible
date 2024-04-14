@@ -1,26 +1,12 @@
 ---  
 
-- name: Create download directory
-  ansible.builtin.file:
-    path: /home/zantop/downloads
-    state: directory
-    mode: '0755'
-
-- name: Download Plex Package
-  ansible.builtin.get_url:
-    name: https://downloads.plex.tv/plex-media-server-new/1.40.1.8227-c0dd5a73e/debian/plexmediaserver_1.40.1.8227-c0dd5a73e_amd64.deb
-    dest: /home/zantop/downloads
 
 - name: Install Plex
   ansible.builtin.apt:
-    deb: /home/zantop/downloads/plexmediaserver_1.40.1.8227-c0dd5a73e_amd64.deb
+    deb: https://downloads.plex.tv/plex-media-server-new/1.40.1.8227-c0dd5a73e/debian/plexmediaserver_1.40.1.8227-c0dd5a73e_amd64.deb
 
-- name: Download Jellyfin
-  ansible.builtin.get_url:
-    name: https://repo.jellyfin.org/files/server/debian/latest-stable/amd64/jellyfin-server_10.8.13-1_amd64.deb
-    dest: /home/zantop/downloads
 
 - name: Install Jellyfin
   ansible.builtin.apt:
-    deb: /home/zantop/downloads/jellyfin-server_10.8.13-1_amd64.deb
+    deb: https://repo.jellyfin.org/files/server/debian/latest-stable/amd64/jellyfin-server_10.8.13-1_amd64.deb
     
