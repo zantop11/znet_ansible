@@ -1,0 +1,13 @@
+---
+
+- name: Add Sabnzbd Repo
+  ansible.builtin.deb822_repository:
+    name: sabnzbd
+    types: deb
+    uris: ppa:jcfp/nobetas
+    suites: stretch
+    components:
+      - main
+      - contrib
+      - non-free
+    notify: update_cache
