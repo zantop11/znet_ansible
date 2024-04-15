@@ -1,0 +1,22 @@
+---
+
+- host: all
+  become: true
+  pre-tasks:
+  - name: Updating package repo
+    ansible.builtin.apt:
+      name: "*"
+      update_cache: yes
+      autoremove: yes
+      autoclean: yes
+
+  - name: Install Tailscale Repo
+    ansible.builtin.deb822_repository:
+      name: tailscale-stable
+      types: [deb]
+      uris: https://pkgs.tailscale.com/stable/ubuntu/jammy.tailscale-keyring.list
+      suites: /usr/share/keyrings/tailscale-archive-keyring.gpg/
+      architectures: amd64
+      signed_by: https://pkgs.tailscale.com/stable/ubuntu/jammy.noarmor.gpg
+      state: present
+      enabled: yes
