@@ -2,6 +2,5 @@
 
 - name: update_cache
   ansible.builtin.apt:
-  name: "*"
-  update_cache: yes
-  
+    name: "*"
+    update_cache: yes
