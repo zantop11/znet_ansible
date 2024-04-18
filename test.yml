@@ -1,0 +1,10 @@
+---
+
+#Used for testing new code quickly
+- hosts: zserv
+  become: true
+  tasks:
+    - name: update_cache
+      ansible.builtin.apt:
+        name: "*"
+        update_cache: yes
