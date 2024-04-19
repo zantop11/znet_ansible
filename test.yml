@@ -3,13 +3,12 @@
 #Used for testing new code quickly
 - hosts: remote01:zserv
   become: true
-  pre-tasks:
+  tasks:
     - name: update_cache
       ansible.builtin.apt:
         name: "*"
         update_cache: yes
         state: latest
-  tasks: 
 
     - name: Install Plex
       ansible.builtin.apt:
