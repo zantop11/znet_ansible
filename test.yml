@@ -1,7 +1,7 @@
 ---
 
 #Used for testing new code quickly
-- hosts: zserv
+- hosts: remote01:zserv
   become: true
   tasks:
     - name: update_cache
