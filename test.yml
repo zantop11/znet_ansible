@@ -7,4 +7,4 @@
     - name: update_cache
       ansible.builtin.apt:
         name: "*"
-        update_cache: yes
+        state: latest
