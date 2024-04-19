@@ -18,3 +18,9 @@
     - name: Install Jellyfin
       ansible.builtin.apt:
         deb: https://repo.jellyfin.org/files/server/debian/latest-stable/amd64/jellyfin-server_10.8.13-1_amd64.deb
+    
+    - name: Enable Jellyfin Service
+      ansible.builtin.service:
+        name: jellyfin
+        enabled: yes
+        state: started 
