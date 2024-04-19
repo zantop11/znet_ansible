@@ -22,5 +22,5 @@
     - name: Enable Jellyfin Service
       ansible.builtin.service:
         name: jellyfin
+        state: started
         enabled: yes
-        state: started 
