@@ -7,10 +7,11 @@
     ansible.builtin.apt:
       name: "*"
       update_cache: yes
+      state: latest
       autoremove: yes
       autoclean: yes
 
-  - name: Install Tailscale Repo
+  - name: Download Tailscale Repo
     ansible.builtin.deb822_repository:
       name: tailscale-stable
       types: [deb]
@@ -20,3 +21,14 @@
       signed_by: https://pkgs.tailscale.com/stable/ubuntu/jammy.noarmor.gpg
       state: present
       enabled: yes
+  
+  - name: Install Tailscale
+    ansible.builtin.apt:
+      name: tailscale
+  
+  - name: Start Tailscale
+    ansible.builtin.services:
+      name: tailscaled
+      enabled: yes
+      state: started
+      
