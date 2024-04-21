@@ -11,16 +11,15 @@
       autoremove: yes
       autoclean: yes
 
-  - name: Download Tailscale Repo
-    ansible.builtin.deb822_repository:
-      name: tailscale-stable
-      types: [deb]
-      uris: https://pkgs.tailscale.com/stable/ubuntu/jammy.tailscale-keyring.list
-      suites: /usr/share/keyrings/tailscale-archive-keyring.gpg/
-      architectures: amd64
-      signed_by: https://pkgs.tailscale.com/stable/ubuntu/jammy.noarmor.gpg
-      state: present
-      enabled: yes
+  - name: Download GPG Key
+    ansible.builtin.get_url: 
+      url: https://pkgs.tailscale.com/stable/ubuntu/focal.noarmor.gpg
+      dest: /usr/share/keyrings/tailscale-archive-keyring.gpg
+  
+  - name: Download GPG Key
+    ansible.builtin.get_url:
+      url: https://pkgs.tailscale.com/stable/ubuntu/focal.tailscale-keyring.list
+      dest: /etc/apt/sources.list.d/tailscale.list
   
   - name: Install Tailscale
     ansible.builtin.apt:
