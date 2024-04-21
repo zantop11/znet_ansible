@@ -27,7 +27,7 @@
       name: tailscale
   
   - name: Start Tailscale
-    ansible.builtin.services:
+    ansible.builtin.service:
       name: tailscaled
       enabled: yes
       state: started
