@@ -1,6 +1,6 @@
 ---
 
-- host: remote01:zserv
+- hosts: remote01:zserv
   become: true
   pre-tasks:
   - name: Updating package repo
