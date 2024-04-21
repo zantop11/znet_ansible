@@ -13,13 +13,18 @@
 
   - name: Download GPG Key
     ansible.builtin.get_url: 
-      url: https://pkgs.tailscale.com/stable/ubuntu/focal.noarmor.gpg
+      url: https://pkgs.tailscale.com/stable/ubuntu/jammy.noarmor.gpg
       dest: /usr/share/keyrings/tailscale-archive-keyring.gpg
   
   - name: Download GPG Key
     ansible.builtin.get_url:
-      url: https://pkgs.tailscale.com/stable/ubuntu/focal.tailscale-keyring.list
+      url: https://pkgs.tailscale.com/stable/ubuntu/jammy.tailscale-keyring.list
       dest: /etc/apt/sources.list.d/tailscale.list
+
+  - name: Add Repo
+    ansible.builtin.apt_repository:
+      filename: example-repo
+      repo: 'deb [signed-by=/etc/apt/keyrings/example.gpg] https://example.com/packages/8.x/apt stable main'
   
   - name: Install Tailscale
     ansible.builtin.apt:
