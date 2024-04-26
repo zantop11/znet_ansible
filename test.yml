@@ -17,13 +17,13 @@
 
     - name: Add Jellyfin Repo
       ansible.builtin.deb822_repository:
-      name: sabnzbd
-      types: deb
-      uris: ppa:jcfp/nobetas
-      suites: stretch
-      components:
-        - main
-        - contrib
-        - non-free
+        name: sabnzbd
+        types: deb
+        uris: ppa:jcfp/nobetas
+        suites: stretch
+        components:
+          - main
+          - contrib
+          - non-free
       
 
